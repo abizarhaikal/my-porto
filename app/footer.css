@@ -1,0 +1,36 @@
+.portfolio-footer{background:#f0ede7;color:var(--ink);overflow:hidden;padding:clamp(48px,8vw,112px) 0 22px}
+.portfolio-footer-inner{position:relative}
+.footer-invitation{max-width:560px;margin:0 0 clamp(48px,7vw,84px)}
+.footer-invitation h2{font:normal clamp(2rem,3.8vw,3.25rem)/1.04 Georgia,serif;letter-spacing:-.04em;margin:0 0 14px}
+.footer-invitation p{max-width:460px;color:#656962;font-size:clamp(.95rem,1.5vw,1.15rem);line-height:1.55;margin:0}
+.portfolio-footer-top{display:block}
+.footer-contact{align-self:start}
+.footer-socials{display:flex;gap:12px;margin-bottom:30px}
+.footer-socials a{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:#171a18;color:#f5f2ec;transition:transform .22s ease,background .22s ease,color .22s ease}
+.footer-socials a:hover{transform:translateY(-4px);background:var(--rust);color:white}
+.footer-socials svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.footer-socials .footer-icon-dot{fill:currentColor;stroke:none}
+.footer-email{display:inline-block;color:#656962;font-size:clamp(1.45rem,3.3vw,2.45rem);letter-spacing:-.045em;line-height:1.2;transition:color .2s ease}
+.footer-email:hover{color:var(--rust)}
+.footer-links{width:min(100%,560px);display:grid;grid-template-columns:clamp(140px,17.5vw,220px) 1fr;gap:40px;padding-top:clamp(72px,13vw,116px)}
+.footer-links div{display:flex;flex-direction:column;align-items:flex-start;gap:11px}
+.footer-links div>span{font-size:.9rem;color:#858981;margin-bottom:10px}
+.footer-links a{font-size:clamp(1.25rem,2.5vw,1.9rem);letter-spacing:-.035em;transition:color .2s ease}
+.footer-links a:hover,.footer-bottom a:hover{color:var(--rust)}
+.footer-mark{position:relative;margin:clamp(32px,5vw,54px) 0 30px}
+.footer-name{font:600 clamp(3.25rem,12vw,9rem)/.9 Arial,Helvetica,sans-serif;letter-spacing:-.06em;white-space:nowrap;color:#242723;opacity:.065;margin:0 0 0 -.045em;pointer-events:none}
+.footer-haze{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.footer-haze span{position:absolute;inset:0;display:block;font:600 clamp(3.25rem,12vw,9rem)/.9 Arial,Helvetica,sans-serif;letter-spacing:-.06em;white-space:nowrap;color:#242723;opacity:.065;text-indent:-.045em;filter:blur(var(--haze-blur));mask-image:linear-gradient(to bottom,transparent var(--haze-start),#000 var(--haze-in),#000 var(--haze-out),transparent var(--haze-end));-webkit-mask-image:linear-gradient(to bottom,transparent var(--haze-start),#000 var(--haze-in),#000 var(--haze-out),transparent var(--haze-end))}
+.footer-haze span:nth-child(1){--haze-blur:.1px;--haze-start:0%;--haze-in:12.5%;--haze-out:25%;--haze-end:37.5%}
+.footer-haze span:nth-child(2){--haze-blur:.2px;--haze-start:12.5%;--haze-in:25%;--haze-out:37.5%;--haze-end:50%}
+.footer-haze span:nth-child(3){--haze-blur:.4px;--haze-start:25%;--haze-in:37.5%;--haze-out:50%;--haze-end:62.5%}
+.footer-haze span:nth-child(4){--haze-blur:.8px;--haze-start:37.5%;--haze-in:50%;--haze-out:62.5%;--haze-end:75%}
+.footer-haze span:nth-child(5){--haze-blur:1.5px;--haze-start:50%;--haze-in:62.5%;--haze-out:75%;--haze-end:87.5%}
+.footer-haze span:nth-child(6){--haze-blur:3px;--haze-start:62.5%;--haze-in:75%;--haze-out:87.5%;--haze-end:100%}
+.footer-haze span:nth-child(7){--haze-blur:5px;--haze-start:75%;--haze-in:87.5%;--haze-out:100%;--haze-end:112.5%}
+.footer-haze span:nth-child(8){--haze-blur:7px;--haze-start:87.5%;--haze-in:100%;--haze-out:112.5%;--haze-end:125%}
+.footer-bottom{border-top:1px solid #d5d2ca;padding-top:18px;display:flex;justify-content:space-between;gap:20px;color:#777b74;font-size:.72rem}
+.footer-bottom a{transition:color .2s ease}
+@media(max-width:700px){.portfolio-footer{padding:52px 0 20px}.footer-invitation{margin-bottom:50px}.portfolio-footer-top{min-height:auto}.footer-socials{gap:10px;margin-bottom:23px}.footer-socials a{width:50px;height:50px}.footer-links{width:100%;grid-template-columns:1fr 1fr;padding-top:72px;gap:24px}.footer-links div{gap:9px}.footer-mark{margin:0 0 24px}.footer-name{margin:50px 0 24px -.035em}.footer-haze span{text-indent:-.035em}.footer-bottom{font-size:.65rem}}
+@media(max-width:370px){.footer-email{font-size:1.12rem}}
+@media(prefers-reduced-motion:reduce){.footer-socials a,.footer-email,.footer-links a,.footer-bottom a{transition:none}}

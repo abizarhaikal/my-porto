@@ -1,0 +1,10 @@
+import type { Metadata } from "next";
+import NotFoundPage from "./components/NotFoundPage";
+
+export const metadata: Metadata = {
+  title: "Page not found | Haikal Abizar",
+};
+
+export default function NotFound() {
+  return <NotFoundPage />;
+}

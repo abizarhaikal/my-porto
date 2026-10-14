@@ -1,0 +1,7 @@
+.not-found-main{min-height:525px;padding:58px 24px 68px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border-bottom:1px solid var(--line)}
+.not-found-main h1{margin:0;color:#10110f;font:700 clamp(9rem,25vw,15rem)/.82 Arial,Helvetica,sans-serif;letter-spacing:-.095em}
+.not-found-main p{margin:52px 0 31px;color:var(--muted);font-size:clamp(1.15rem,2.4vw,1.75rem);line-height:1.4;letter-spacing:-.025em}
+.not-found-home{min-height:60px;padding:0 27px;display:inline-flex;align-items:center;justify-content:center;border-radius:16px;background:#111310;color:#f7f4ee;font-size:1rem;font-weight:700;box-shadow:0 15px 28px -16px #111310aa;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.not-found-home:hover{transform:translateY(-2px);background:#292c27;box-shadow:0 18px 32px -16px #111310bb}
+@media(max-width:650px){.not-found-main{min-height:470px;padding:56px 20px}.not-found-main h1{font-size:clamp(8rem,34vw,11rem)}.not-found-main p{margin:42px 0 27px}.not-found-home{min-height:54px;font-size:.92rem}}
+@media(prefers-reduced-motion:reduce){.not-found-home{transition:none}}
