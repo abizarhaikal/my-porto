@@ -21,7 +21,7 @@ export default function CaseStudy({ id }: { id: ProjectId }) {
       <nav aria-label="Main navigation"><Link href="/#work">{lang === "en" ? "Work" : "Karya"}</Link><Link href="/#journey">{lang === "en" ? "Journey" : "Perjalanan"}</Link><Link href="/#contact">{lang === "en" ? "Contact" : "Kontak"}</Link></nav>
       <div className="languages" aria-label="Language"><button type="button" aria-pressed={lang === "en"} onClick={() => setLang("en")}>EN</button><button type="button" aria-pressed={lang === "id"} onClick={() => setLang("id")}>ID</button></div>
     </header>
-    <main>
+    <main className="case-main">
       <div className="wrap case-content">
         <Link className="case-return" href="/#work">← {t.close}</Link>
         <div className="case-heading"><span>SELECTED WORK / 0{position + 1}</span><h1>{project.name}<i>.</i></h1><p>{project.title[lang]}</p></div>
@@ -39,6 +39,7 @@ export default function CaseStudy({ id }: { id: ProjectId }) {
         <div className="case-next"><span>{lang === "en" ? "NEXT PROJECT" : "PROYEK BERIKUTNYA"}</span><Link href={`/work/${next}`}>{projectInfo[next].name} <span aria-hidden="true">↗</span></Link></div>
       </div>
     </main>
+
     <PortfolioFooter lang={lang} homePath="/" />
   </div>;
 }

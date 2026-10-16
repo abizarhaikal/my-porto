@@ -25,7 +25,7 @@ export default function ProjectStack({ projects, lang, preview }: { projects: Pr
     gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const media = gsap.matchMedia();
-      media.add("(prefers-reduced-motion: no-preference)", () => {
+      media.add("(min-width: 651px) and (prefers-reduced-motion: no-preference)", () => {
         const slots = gsap.utils.toArray<HTMLElement>("[data-project-slot]");
         slots.slice(0, -1).forEach((slot, index) => {
           gsap.to(slot.querySelector("[data-project-card]"), {
@@ -85,16 +85,18 @@ export default function ProjectStack({ projects, lang, preview }: { projects: Pr
 
   return <div ref={root} className={styles.stack}>
     {projects.map((project, index) => <div key={project.id} className={styles.slot} data-project-slot style={{ zIndex: index + 1 }}>
-      <article className={`${styles.card} ${styles[project.id]}`} data-project-card>
+      <article className={`${styles.card} ${styles[project.id] ?? ""}`} data-project-card>
         <div className={styles.copy}>
           <span className={styles.identifier}>{project.name} <span>0{index + 1} / 03</span></span>
           <h3>{project.title}</h3>
           <p>{project.description}</p>
           <div className={styles.tags}>{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div>
         </div>
-        <div className={styles.visual}>{preview(project.id)}<span className={styles.visualCaption}>{project.name} <span>— {lang === "en" ? "Illustrative preview" : "Preview ilustratif"}</span></span></div>
-        <button type="button" className={styles.open} aria-label={`${t.view}: ${project.name}`} onClick={event => open(project, event)}><span>{t.view} <b aria-hidden="true">↗</b></span></button>
-        <Link className={styles.caseLink} href={`/work/${project.id}`}>{lang === "en" ? "Read case study" : "Baca studi kasus"} <span aria-hidden="true">↗</span></Link>
+        <div className={styles.visual}>{preview(project.id)}<span className={styles.visualCaption}>{project.name} <span>— {lang === "en" ? "Illustrative preview" : "Pratinjau ilustratif"}</span></span></div>
+        <div className={styles.actions}>
+          <Link className={styles.caseLink} href={`/work/${project.id}`}>{lang === "en" ? "Read case study" : "Baca studi kasus"} <span aria-hidden="true">↗</span></Link>
+          <button type="button" className={styles.open} aria-label={`${t.view}: ${project.name}`} onClick={event => open(project, event)}><span>{t.view} <b aria-hidden="true">↗</b></span></button>
+        </div>
       </article>
     </div>)}
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="project-detail-title" onCancel={event => { event.preventDefault(); close(); }}>

@@ -37,7 +37,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(person).replace(/</g, "\\u003c") }} />
         {children}
-      </body>
+      {/* impeccable-live-start */}
+<script src="http://localhost:8402/live.js?token=f6131a82-f1bd-4d6e-b5f9-91f04cfe4cb4"></script>
+{/* impeccable-live-end */}
+</body>
     </html>
   );
 }

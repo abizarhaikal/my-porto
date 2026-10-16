@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T00:00:00+07:00",
+  "title": "Design System: Haikal Abizar Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper" },
+      "ink": { "role": "neutral", "displayName": "Ink" },
+      "muted": { "role": "neutral", "displayName": "Muted Text" },
+      "line": { "role": "neutral", "displayName": "Border Line" },
+      "rust": { "role": "primary", "displayName": "Terracotta" },
+      "forest": { "role": "secondary", "displayName": "Forest" },
+      "section-soft": { "role": "neutral", "displayName": "Soft Section" },
+      "skill-surface": { "role": "neutral", "displayName": "Charcoal Section" },
+      "skill-card": { "role": "neutral", "displayName": "Charcoal Card" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Candidate name in the hero." },
+      "headline": { "displayName": "Headline", "purpose": "Journey and contact section headings." },
+      "body": { "displayName": "Body", "purpose": "Profile and career descriptions." },
+      "label": { "displayName": "Label", "purpose": "Navigation context, dates, and compact supporting labels." }
+    },
+    "shadows": [
+      { "name": "journey-card", "value": "0 18px 45px -42px #263a3570", "purpose": "Soft separation from the pale journey section." },
+      { "name": "project-card", "value": "0 20px 55px -32px #3a453d5c", "purpose": "Low, diffuse depth for project surfaces." },
+      { "name": "preview-surface", "value": "0 28px 45px -37px #1f232180", "purpose": "Anchors illustrative interface previews." }
+    ],
+    "motion": [
+      { "name": "control-transition", "value": "0.2s ease", "purpose": "Button, link, and control state changes." },
+      { "name": "preview-transition", "value": "0.6s cubic-bezier(.16,1,.3,1)", "purpose": "Project preview settles when the project action is hovered or focused." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "Disable or simplify nonessential animation and smooth scrolling." }
+    ],
+    "breakpoints": [
+      { "name": "journey-mobile", "value": "700px" },
+      { "name": "mobile", "value": "650px" },
+      { "name": "tablet", "value": "850px" },
+      { "name": "desktop-compact", "value": "950px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Square terracotta action used to enter the selected work section.",
+      "html": "<a class=\"ds-button-primary\" href=\"#work\">Explore my work <span aria-hidden=\"true\">↗</span></a>",
+      "css": ".ds-button-primary { min-height: 54px; display: inline-flex; align-items: center; justify-content: space-between; gap: 34px; padding: 15px 21px; background: var(--rust); color: var(--paper); font: 700 .83rem Arial, Helvetica, sans-serif; transition: background .2s ease, transform .2s ease; } .ds-button-primary:hover { background: #7d382b; transform: translateY(-3px); } .ds-button-primary:focus-visible { outline: 2px solid var(--rust); outline-offset: 5px; }"
+    },
+    {
+      "name": "Resume Link",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Quiet bordered action for downloading the resume.",
+      "html": "<a class=\"ds-resume-link\" href=\"#resume\">Download resume <span aria-hidden=\"true\">↓</span></a>",
+      "css": ".ds-resume-link { display: inline-flex; align-items: center; justify-content: space-between; gap: 45px; padding: 15px 18px; background: #fff; border: 1px solid #dde3df; border-radius: 12px; color: var(--ink); font: 700 .82rem Arial, Helvetica, sans-serif; transition: transform .2s, background .2s; } .ds-resume-link:hover { transform: translateY(-3px); background: #fff; } .ds-resume-link:focus-visible { outline: 2px solid var(--rust); outline-offset: 5px; }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "description": "Compact links and language toggle in the portfolio header.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#work\">Work</a><a href=\"#journey\">Journey</a><a href=\"#contact\">Contact</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 42px; font: 700 .8rem Arial, Helvetica, sans-serif; } .ds-nav a { color: var(--ink); text-decoration: none; transition: color .2s; } .ds-nav a:hover { color: var(--rust); } @media (max-width: 650px) { .ds-nav { width: 100%; justify-content: space-between; gap: 4px; } .ds-nav a { display: inline-flex; min-height: 44px; align-items: center; padding: 0 8px; } }"
+    },
+    {
+      "name": "Project Technology Tag",
+      "kind": "chip",
+      "refersTo": "project-chip",
+      "description": "Compact non-interactive label for a project's technology stack.",
+      "html": "<span class=\"ds-project-chip\">TypeScript</span>",
+      "css": ".ds-project-chip { display: inline-block; padding: 8px 10px; border-radius: 100px; background: #f0f0e9; color: #535e53; font: 400 .62rem/1.4 Arial, Helvetica, sans-serif; }"
+    },
+    {
+      "name": "Journey Card",
+      "kind": "card",
+      "refersTo": "journey-card",
+      "description": "White timeline card for one role, organization, description, and date.",
+      "html": "<article class=\"ds-journey-card\"><span class=\"ds-journey-label\">Now · WMS / DICE</span><h3>IT Staff — Software Development</h3><strong>Perum BULOG</strong><p>I build enterprise web applications and warehouse inbound workflows.</p><span class=\"ds-journey-date\">Jan 2026 — Present</span></article>",
+      "css": ".ds-journey-card { min-height: 300px; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(26px, 3vw, 42px); border: 1px solid #dde3df; border-radius: 26px; background: var(--paper); color: var(--ink); box-shadow: 0 18px 45px -42px #263a3570; } .ds-journey-label { color: var(--rust); font: 700 .67rem Arial, Helvetica, sans-serif; } .ds-journey-card h3 { max-width: 480px; margin: 17px 0 10px; font: 400 clamp(1.8rem, 2.6vw, 2.8rem)/1.12 Georgia, serif; letter-spacing: -.02em; } .ds-journey-card strong { color: #667168; font: 700 .72rem Arial, Helvetica, sans-serif; } .ds-journey-card p { max-width: 510px; margin: 23px 0 28px; color: var(--muted); font: 400 .95rem/1.65 Arial, Helvetica, sans-serif; } .ds-journey-date { margin-top: auto; padding: 9px 12px; border-radius: 8px; background: var(--forest); color: #f5f2e9; font: 700 .68rem Arial, Helvetica, sans-serif; } @media (max-width: 700px) { .ds-journey-card { min-height: 0; padding: 23px; border-radius: 19px; } }"
+    },
+    {
+      "name": "Skill Group Card",
+      "kind": "card",
+      "refersTo": "skill-card",
+      "description": "Charcoal surface for a category of skills and tools.",
+      "html": "<article class=\"ds-skill-card\"><span class=\"ds-skill-badge\">UI</span><h3>Frontend</h3><p>Responsive web applications and operational dashboards.</p></article>",
+      "css": ".ds-skill-card { min-height: 230px; display: flex; flex-direction: column; align-items: flex-start; padding: 24px; border-radius: 14px; background: #32352f; color: #f0eee8; } .ds-skill-badge { display: inline-block; padding-bottom: 5px; border-bottom: 1px solid currentColor; color: #d6b3a3; font: 700 .7rem Arial, Helvetica, sans-serif; } .ds-skill-card h3 { margin: 21px 0 9px; font: 400 clamp(1.5rem, 2.2vw, 2rem) Georgia, serif; } .ds-skill-card p { max-width: 38ch; margin: 0; color: #c8cbc3; font: 400 .9rem/1.55 Arial, Helvetica, sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Portofolio editorial yang tenang",
+    "overview": "The portfolio presents a software engineer's profile, work history, and case studies for recruiters and hiring managers. Its visual voice is clear and grounded: editorial serif headlines give the content character, while a direct sans-serif keeps descriptions and controls easy to scan.\n\nThe page uses a neutral-light foundation with restrained terracotta accents. Dark forest and charcoal surfaces distinguish the contact and skills areas. Cards use a thin border and soft shadow to separate content without making the page feel heavy. The layout leaves room for project previews, career details, and the candidate's portrait to carry the story.",
+    "keyCharacteristics": [
+      "Calm editorial typography with Georgia headlines and Arial body text.",
+      "Neutral light surfaces, with terracotta used sparingly for emphasis.",
+      "Clear, tactile controls and softly separated cards.",
+      "Claims and project details stay grounded in available evidence."
+    ],
+    "rules": [
+      { "name": "The Evidence Before Assertion Rule", "body": "Keep profile and project claims accurate, and do not add figures or internal company details without public evidence.", "section": "colors" },
+      { "name": "The Restrained Accent Rule", "body": "Use terracotta to direct attention to a specific action or timeline detail; let neutral surfaces carry the page.", "section": "colors" },
+      { "name": "The Thin Layer Rule", "body": "Prefer a clear border and soft shadow over stacked, high-contrast elevation.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the neutral-light foundation and use terracotta for focused emphasis.",
+      "Do preserve the distinct dark skills and contact sections as structural contrast.",
+      "Do preserve visible keyboard focus and reduced-motion behavior."
+    ],
+    "donts": [
+      "Don't add unverified metrics, testimonials, or claims.",
+      "Don't introduce decorative gradient-heavy backgrounds or multiple competing accents.",
+      "Don't use tight display tracking beyond the existing -.02em headline treatment."
+    ]
+  }
+}
