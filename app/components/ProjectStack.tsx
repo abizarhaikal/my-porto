@@ -3,28 +3,13 @@
 import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Link from "next/link";
+import { detail } from "../work/projects";
 import styles from "./ProjectStack.module.css";
 
 export type ProjectType = "wms" | "dice" | "trailoo";
 type Project = { id: ProjectType; name: string; title: string; description: string; tags: string[] };
 type Selection = { id: ProjectType; x: number; y: number };
-
-const detail = {
-  en: {
-    view: "View project", close: "Back to portfolio", contribution: "My contribution", context: "The context", built: "What I worked on",
-    note: "This interface was recreated for the portfolio. Internal screens and data are not shown.",
-    wms: ["An internal Warehouse Management System for warehouse monitoring and inbound operations. I have worked on its web interfaces since January 2026.", ["Responsive warehouse-monitoring dashboards", "Inbound and logistics interfaces", "Location and vehicle-queue views"]],
-    dice: ["Aktivasi Budaya is an internal platform for activity reporting and image-fraud checks. I have worked on the application and its image-analysis service since March 2026.", ["Activity-monitoring and reporting interfaces", "REST API endpoints connecting the web app and image-analysis service", "Custom Python service using FastAPI and OpenCV ORB"]],
-    trailoo: ["TRAILOO is a smart trolley with indoor navigation and tablet checkout. I worked on its dashboards from August to November 2025. The project received national PKM-KI 2025 funding.", ["Responsive web and tablet dashboards", "Navigation-update API integration", "Transaction-monitoring interfaces"]],
-  },
-  id: {
-    view: "Lihat proyek", close: "Kembali ke portofolio", contribution: "Kontribusi saya", context: "Konteks proyek", built: "Yang saya kerjakan",
-    note: "Antarmuka ini dibuat ulang untuk portofolio. Tampilan dan data internal tidak ditampilkan.",
-    wms: ["Warehouse Management System internal untuk pemantauan gudang dan penerimaan barang. Saya mengerjakan antarmuka webnya sejak Januari 2026.", ["Dashboard pemantauan gudang yang responsif", "Antarmuka barang masuk dan logistik", "Tampilan lokasi dan antrean kendaraan"]],
-    dice: ["Aktivasi Budaya adalah platform internal untuk pelaporan kegiatan dan pemeriksaan kecurangan gambar. Saya mengerjakan aplikasi dan layanan analisis gambarnya sejak Maret 2026.", ["Antarmuka pemantauan dan pelaporan kegiatan", "Endpoint REST API penghubung aplikasi web dan layanan analisis gambar", "Layanan Python dengan FastAPI dan OpenCV ORB"]],
-    trailoo: ["TRAILOO adalah smart trolley dengan navigasi dalam ruangan dan checkout melalui tablet. Saya mengerjakan dashboard-nya pada Agustus–November 2025. Proyek ini mendapat pendanaan nasional PKM-KI 2025.", ["Dashboard web dan tablet yang responsif", "Integrasi API pembaruan navigasi", "Antarmuka pemantauan transaksi"]],
-  },
-} as const;
 
 export default function ProjectStack({ projects, lang, preview }: { projects: Project[]; lang: "en" | "id"; preview: (id: ProjectType) => ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
@@ -109,6 +94,7 @@ export default function ProjectStack({ projects, lang, preview }: { projects: Pr
         </div>
         <div className={styles.visual}>{preview(project.id)}<span className={styles.visualCaption}>{project.name} <span>— {lang === "en" ? "Illustrative preview" : "Preview ilustratif"}</span></span></div>
         <button type="button" className={styles.open} aria-label={`${t.view}: ${project.name}`} onClick={event => open(project, event)}><span>{t.view} <b aria-hidden="true">↗</b></span></button>
+        <Link className={styles.caseLink} href={`/work/${project.id}`}>{lang === "en" ? "Read case study" : "Baca studi kasus"} <span aria-hidden="true">↗</span></Link>
       </article>
     </div>)}
     <dialog ref={dialog} className={styles.dialog} aria-labelledby="project-detail-title" onCancel={event => { event.preventDefault(); close(); }}>
@@ -120,6 +106,7 @@ export default function ProjectStack({ projects, lang, preview }: { projects: Pr
           <div className={styles.detailPreview}>{preview(selected.id)}</div>
           <div className={styles.detailGrid}><section><h3>{t.context}</h3><p>{t[selected.id][0]}</p></section><section><h3>{t.contribution}</h3><p>{selected.description}</p><h3>{t.built}</h3><ul>{t[selected.id][1].map(item => <li key={item}>{item}</li>)}</ul></section></div>
           <p className={styles.note}>{t.note}</p>
+          <Link className={styles.caseDetailLink} href={`/work/${selected.id}`}>{lang === "en" ? "Read full case study" : "Baca studi kasus lengkap"} <span aria-hidden="true">↗</span></Link>
           <button className={styles.back} type="button" onClick={close}>{t.close} <span aria-hidden="true">↙</span></button>
         </div>
       </>}

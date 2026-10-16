@@ -1,15 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectStack from "./components/ProjectStack";
 import ExpertiseSummary from "./components/ExpertiseSummary";
 import PortfolioFooter from "./components/PortfolioFooter";
+import usePortfolioLanguage from "./components/usePortfolioLanguage";
 import "./journey.css";
 
-type Lang = "en" | "id";
 const content = {
   en: {
     nav: ["Work", "Journey", "Contact"],
@@ -25,7 +25,7 @@ const content = {
     now: "Present", before: "Before", foundation: "Foundation",
     nowChapter: ["IT Staff — Software Development", "I build enterprise web applications and warehouse inbound workflows. For Aktivasi Budaya, I also built a Python service that compares images using FastAPI and OpenCV ORB."],
     beforeChapter: ["IT Intern", "I developed backend services with Express, TypeScript, Prisma, and PostgreSQL, alongside Next.js dashboards and a Flutter app. I also maintained corporate websites with WordPress, Elementor, PHP, and JavaScript."],
-    wms: ["Warehouse dashboards and inbound workflows.", "I design and build WMS interfaces for warehouse monitoring, inbound logistics, and vehicle queues. The dashboards support different user roles and use Next.js, TypeScript, Tailwind CSS, and HeroUI.", "Next.js · TypeScript · HeroUI · Warehouse workflows"],
+    wms: ["Warehouse dashboards and inbound workflows.", "I design and build WMS interfaces for vehicle queues, inbound checks, and warehouse capacity. The app uses React Router, TypeScript, Tailwind CSS, and HeroUI, with views tailored to different user roles.", "React Router · TypeScript · HeroUI · Warehouse workflows"],
     dice: ["Image analysis for activity reporting.", "For Aktivasi Budaya, I built an internal web application and a Python API for image-fraud checks. The service extracts and matches image features with OpenCV ORB, supporting analysis, monitoring, and reporting.", "Python · FastAPI · OpenCV ORB · REST APIs"],
     intern: ["Learning to build across the stack.", "As an IT intern at Perum BULOG, I developed backend services with Express, TypeScript, Prisma, and PostgreSQL, alongside Next.js dashboards and a Flutter application."],
     trailoo: ["Web and tablet dashboards for a smart trolley.", "I built TRAILOO’s web and tablet dashboards with Next.js and worked with backend and AI teams to integrate navigation and transaction APIs. The project received national PKM-KI funding in 2025.", "Next.js · shadcn/ui · API integration · PKM-KI 2025"],
@@ -46,7 +46,7 @@ const content = {
     now: "Sekarang", before: "Sebelumnya", foundation: "Fondasi",
     nowChapter: ["IT Staff — Software Development", "Saya membangun aplikasi web perusahaan dan alur penerimaan barang di gudang. Untuk Aktivasi Budaya, saya juga membangun layanan Python untuk membandingkan gambar dengan FastAPI dan OpenCV ORB."],
     beforeChapter: ["IT Intern", "Saya mengembangkan layanan backend dengan Express, TypeScript, Prisma, dan PostgreSQL, serta dashboard Next.js dan aplikasi Flutter. Saya juga mengelola website perusahaan dengan WordPress, Elementor, PHP, dan JavaScript."],
-    wms: ["Dashboard gudang dan alur penerimaan barang.", "Saya merancang dan membangun antarmuka WMS untuk pemantauan gudang, penerimaan barang, dan antrean kendaraan. Dashboard ini mendukung berbagai peran pengguna dan memakai Next.js, TypeScript, Tailwind CSS, serta HeroUI.", "Next.js · TypeScript · HeroUI · Operasional gudang"],
+    wms: ["Dashboard gudang dan alur penerimaan barang.", "Saya merancang dan membangun antarmuka WMS untuk antrean kendaraan, pemeriksaan barang masuk, dan kapasitas gudang. Aplikasi memakai React Router, TypeScript, Tailwind CSS, dan HeroUI, dengan tampilan sesuai peran pengguna.", "React Router · TypeScript · HeroUI · Operasional gudang"],
     dice: ["Analisis gambar untuk pelaporan kegiatan.", "Untuk Aktivasi Budaya, saya membangun aplikasi web internal dan API Python untuk membantu pemeriksaan kecurangan gambar. Layanan ini mengekstraksi dan mencocokkan fitur gambar dengan OpenCV ORB untuk mendukung analisis, pemantauan, dan pelaporan.", "Python · FastAPI · OpenCV ORB · REST API"],
     intern: ["Belajar membangun dari frontend hingga backend.", "Saat magang di Perum BULOG, saya mengembangkan layanan backend dengan Express, TypeScript, Prisma, dan PostgreSQL, serta dashboard Next.js dan aplikasi Flutter."],
     trailoo: ["Dashboard web dan tablet untuk smart trolley.", "Saya membangun dashboard web dan tablet TRAILOO dengan Next.js, lalu bekerja sama dengan tim backend dan AI untuk mengintegrasikan API navigasi dan transaksi. Proyek ini mendapat pendanaan nasional PKM-KI pada 2025.", "Next.js · shadcn/ui · Integrasi API · PKM-KI 2025"],
@@ -80,11 +80,10 @@ function Preview({ type, label }: { type: "wms" | "dice" | "trailoo"; label: str
 }
 
 export default function Home() {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = usePortfolioLanguage();
   const root = useRef<HTMLDivElement>(null);
   const t = content[lang];
 
-  useEffect(() => { document.documentElement.lang = lang; }, [lang]);
   useEffect(() => {
     if (!root.current) return;
     gsap.registerPlugin(ScrollTrigger);

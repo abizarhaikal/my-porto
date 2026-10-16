@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import PortfolioFooter from "./PortfolioFooter";
+import usePortfolioLanguage from "./usePortfolioLanguage";
 import "../not-found.css";
 
 const copy = {
@@ -11,12 +11,9 @@ const copy = {
 } as const;
 
 export default function NotFoundPage() {
-  const [lang, setLang] = useState<"en" | "id">("en");
+  const [lang, setLang] = usePortfolioLanguage();
   const t = copy[lang];
 
-  useEffect(() => {
-    document.documentElement.lang = lang;
-  }, [lang]);
 
   return <div className="site">
     <header className="header">
